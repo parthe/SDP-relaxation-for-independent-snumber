@@ -1,5 +1,5 @@
-function t = theta(A)
-
+function [val,tim] = theta(A)
+    tic
     n = length(A);
     blk{1,1} = 's';      blk{1,2} = n;
     e = nnz(A)/2;
@@ -24,9 +24,9 @@ function t = theta(A)
     b = [1;zeros(e,1)];
 %     [obj,~] = sqlp(blk,At,C,b);
     [~,obj,~,~,~] = evalc('sqlp(blk,At,C,b)');
-    t = -obj(1);
+    val = -obj(1);
 %     disp(X{1})
 %     disp(['Independent number is ' num2str(-alpha)])
 %     disp(['SDP relaxation theta_-delta is ' num2str(-obj(1))]);
-    
+    tim = toc;
 end
